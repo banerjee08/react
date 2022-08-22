@@ -12,10 +12,25 @@ class CartItem extends React.Component {
         }
         // second alternate solution
         // this.increaseQuantity = this.increaseQuantity.bind(this)
+        this.testing();
+    }
+
+    testing(){
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('done');
+            }, 5000)
+        })
+        promise.then(() => {
+            // setState acts like a synchronus call
+            this.setState({qty: this.state.qty + 10});
+
+            console.log('state', this.state);
+        })
     }
     increaseQuantity = () => {
         // this.state.qty += 1;
-        console.log('this', this.state);
+        // console.log('this', this.state);
         // setState form 1 - by giving it an object
         // this.setState({
         //     qty: this.state.qty + 1
@@ -26,6 +41,8 @@ class CartItem extends React.Component {
             return {
                 qty: prevState.qty + 1
             }
+        }, () => {
+            console.log('this.state', this.state);
         });
     }
 
