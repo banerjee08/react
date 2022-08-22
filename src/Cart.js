@@ -31,6 +31,21 @@ class Cart extends React.Component {
             ]
         }
     }
+
+    handleIncreaseQuantity = (product) => {
+        console.log("Increase qty by 1", product);
+        // get products from start
+        const { products } = this.state
+        // get index of each product
+        const index = products.indexOf(product);
+
+        // change the quantity of the particular product by 1
+        products[index].qty += 1;
+
+        this.setState({ 
+            products: products
+        })
+    }
     render(){
         const { products } = this.state;
         return (
@@ -41,6 +56,7 @@ class Cart extends React.Component {
                         <CartItem 
                         product={product} 
                         key={product.id} 
+                        onIncreaseQuantity = {this.handleIncreaseQuantity}
                         />
                     )
                 })}
