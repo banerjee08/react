@@ -1,7 +1,7 @@
 import React from 'react';
 
 // changed it to functional component
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div style={styles.nav}>
       <div style={styles.cartIconContainer}>
@@ -10,7 +10,7 @@ const Navbar = () => {
           src="https://cdn-icons-png.flaticon.com/512/833/833314.png"
           alt="cart-icon"
         />
-        <span style={styles.cartCount}>3</span>
+        <span style={styles.cartCount}>{props.count}</span>
       </div>
     </div>
   );
