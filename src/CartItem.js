@@ -1,7 +1,7 @@
 import React from 'react';
 
 // create class component
-class CartItem extends React.Component {
+const CartItem = (props) => {
     // constructor(){
     //     super();
     //     this.state = {
@@ -30,50 +30,51 @@ class CartItem extends React.Component {
     //         console.log('state', this.state);
     //     })
     // }
-    increaseQuantity = () => {
-        // this.state.qty += 1;
-        // console.log('this', this.state);
-        // setState form 1 - by giving it an object
-        // this.setState({
-        //     qty: this.state.qty + 1
-        // });
+    // increaseQuantity = () => {
+    //     // this.state.qty += 1;
+    //     // console.log('this', this.state);
+    //     // setState form 1 - by giving it an object
+    //     // this.setState({
+    //     //     qty: this.state.qty + 1
+    //     // });
 
-        // setState form 2 = pass a function i.e. callback
-        this.setState((prevState) => {
-            return {
-                qty: prevState.qty + 1
-            }
-        }, () => {
-            console.log('this.state', this.state);
-        });
-    }
+    //     // setState form 2 = pass a function i.e. callback
+    //     this.setState((prevState) => {
+    //         return {
+    //             qty: prevState.qty + 1
+    //         }
+    //     }, () => {
+    //         console.log('this.state', this.state);
+    //     });
+    // }
 
-    decreaseQuantity = () => {
-        const {qty} = this.state;
+    // decreaseQuantity = () => {
+    //     const {qty} = this.state;
 
-        if(qty === 0){
-            return;
-        }
+    //     if(qty === 0){
+    //         return;
+    //     }
 
-        this.setState((prevState) => {
-            return {
-                qty: prevState.qty - 1
-            }
-        });
-    }
-    render () {
-        console.log('this.props', this.props);
+    //     this.setState((prevState) => {
+    //         return {
+    //             qty: prevState.qty - 1
+    //         }
+    //     });
+    // }
+    // render () 
+    {
+        // console.log('this.props', this.props);
         // object destructuring
-        const {price, title, qty} = this.props.product;
+        const {price, title, qty} = props.product;
         const {
             product, 
             onIncreaseQuantity, 
             onDecreaseQuantity,
             onDeleteProduct 
-        } = this.props;
+        } = props;
         return (
             <div className="cart-item">
-                {this.props.jsx}
+                {/* {this.props.jsx} */}
                 <div className="left-block">
                     <img style={styles.image}></img>
                 </div>
