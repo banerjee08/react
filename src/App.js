@@ -115,6 +115,18 @@ getCartTotal = () => {
   })
   return cartTotal;
 }
+
+
+addProduct = () => {
+  const docRef = addDoc(collection(db, 'products'),{
+    img: 'https://www.sathya.in/media/52449/catalog/samsung-7kg-ww70t4020cx-front-load-washing-machine.png',
+      price: 900,
+      qty: 3,
+      title: 'washing machine'
+  })
+  console.log('Document written with id: ', docRef.id);
+}
+
   render() {
     const { products,loading } = this.state;
 
@@ -122,6 +134,7 @@ getCartTotal = () => {
       <div className="App">
         <Navbar count={this.getCartCount()} />
         <h1>Cart</h1>
+        <button onClick={this.addProduct} style={{ padding: 20, fontSize: 20 }}>Add a Product</button>
         <Cart 
         products = { products }
         onIncreaseQuantity = {this.handleIncreaseQuantity}
