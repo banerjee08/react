@@ -67,10 +67,15 @@ handleIncreaseQuantity = (product) => {
     const index = products.indexOf(product);
 
     // change the quantity of the particular product by 1
-    products[index].qty += 1;
-
-    this.setState({ 
-        products: products
+    const docRef = doc(collection(db, 'products'), products[index].id);
+    updateDoc(docRef, {
+      qty: products[index].qty + 1
+    })
+    .then(() => {
+      console.log('updated successfully');
+    })
+    .catch((error) => {
+      console.log('Error: ', error);
     })
 }
 
