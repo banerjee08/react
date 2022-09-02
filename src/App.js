@@ -86,17 +86,27 @@ handleDecreaseQuantity = (product) => {
     if(products[index].qty === 0){
         return
     }
-    products[index].qty -= 1;
-    this.setState({ products: products})
+    const docRef = doc(collection(db, 'products'), products[index].id);
+    updateDoc(docRef, {
+      qty: products[index].qty - 1
+    })
+    .then(() => {
+      console.log('decreased qty by 1');
+    })
+    .catch((error) => {
+      console.log('Error : ', error);
+    })
 }
 
 handleDeleteProduct = (id) => {
-    const { products } = this.state;
-
-    // return another array where the particular id will not be there
-    const items = products.filter((item) => item.id !== id)
-
-    this.setState({products:items})
+    const docRef = doc(collection(db, 'products'), id);
+    deleteDoc(docRef)
+    .then(() => {
+      console.log('Product Deleted');
+    })
+    .catch((error) => {
+      console.log('Error : ', error);
+    })
 
 }
 
@@ -124,7 +134,7 @@ getCartTotal = () => {
 
 addProduct = () => {
   const docRef = addDoc(collection(db, 'products'),{
-    img: 'https://www.sathya.in/media/52449/catalog/samsung-7kg-ww70t4020cx-front-load-washing-machine.png',
+    img: '',
       price: 900,
       qty: 3,
       title: 'washing machine'
